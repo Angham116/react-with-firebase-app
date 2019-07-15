@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 
 import { Form, Input, Icon, Checkbox, Button} from 'antd';
 
-export default class SignUp extends Component{
+import { withFirebase } from '../Firebase';
+
+import './style.css';
+class SignUp extends Component{
   state = {
     username: '',
     email: '',
@@ -12,11 +15,18 @@ export default class SignUp extends Component{
     error: null,
   };
 
+  componentDidMount(){
+    // console.log(1111, this.props.firebase)
+  }
+
   handleOnChange = (event) => this.setState({ [event.target.name] : event.target.value });
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
+    const { email, password} = this.state;
+    this.props.firebase.signUpUserWithEmailAndPassword(email, password)
+      .then(newUser => this.props.history.push("/app/home"))
+      .catch(error => this.setState({ error }))
   }
 
   render(){
@@ -99,3 +109,7 @@ export default class SignUp extends Component{
     )
   }
 }
+
+const SignUpPage = withFirebase(SignUp);
+
+export default SignUpPage;
