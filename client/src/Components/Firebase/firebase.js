@@ -16,8 +16,11 @@ const firebaseConfig ={
 class Firebase{
   constructor(){
     app.initializeApp(firebaseConfig);
-    this.authUser = app.auth();
+    this.auth = app.auth();
   }
+
+  // function for a new user (sign up)
+  signUpUserWithEmailAndPassword = (email ,password) => this.auth.createUserWithEmailAndPassword(email, password);
 }
 
 export default Firebase;
