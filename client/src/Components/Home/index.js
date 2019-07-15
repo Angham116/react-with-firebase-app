@@ -4,6 +4,6 @@ export default class Home extends Component{
   state = {};
 
   render(){
-    return <h1> {console.log(999)} Home </h1>
+    return <h1> Home </h1>
   }
 }
