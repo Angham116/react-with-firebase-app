@@ -35,6 +35,9 @@ class Firebase{
   // function for sign-in (login)
   signInUserWithEmailAndPassword = (email, password) => this.auth.signInWithEmailAndPassword(email, password);
 
+  // function for logout
+  signOut = () => this.auth.signOut();
+
 }
 
 export default Firebase;

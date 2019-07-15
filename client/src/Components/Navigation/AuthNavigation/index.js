@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { Menu, Icon} from 'antd';
 
 import * as routes from '../../../Routes';
 
-export default class AuthNavigation extends Component{
+import { withFirebase } from '../../Firebase';
+ 
+class AuthNavigation extends Component{
   state = {
     current: '',
+  };
+
+  handleLogout = () => {
+    this.props.firebase.signOut()
+      .then(() => this.props.history.push("/"))
+      .catch(error => console.log(error))
   };
 
   render(){
@@ -35,11 +43,9 @@ export default class AuthNavigation extends Component{
               Account
             </Link>
           </Menu.Item>
-          <Menu.Item>
-            <Link to={routes.landing}>
+          <Menu.Item onClick={this.handleLogout}>
               <Icon type="logout"/>
               Logout
-            </Link>
           </Menu.Item>
         </Menu.SubMenu>
         <Menu.SubMenu
@@ -61,3 +67,6 @@ export default class AuthNavigation extends Component{
     )
   }
 }
+
+export default withRouter(withFirebase(AuthNavigation));
+
