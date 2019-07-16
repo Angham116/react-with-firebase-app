@@ -6,11 +6,16 @@ import NonAuthNavigation from './NonAuthNavigation';
 export default class Navigation extends Component{
   state = {};
 
+  componentDidMount(){
+    console.log(this.props);
+  }
+
   render(){
     return (
       <>
-        <NonAuthNavigation />
-        <AuthNavigation />
+        {
+          this.props.authUser ? <AuthNavigation /> : <NonAuthNavigation />
+        }
       </>
     )
   }
