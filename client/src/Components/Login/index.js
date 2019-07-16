@@ -5,6 +5,8 @@ import { withFirebase } from '../Firebase';
 
 import './style.css';
 
+import * as routes from '../../Routes';
+
 import { Form, Input, Checkbox, Button, Icon } from 'antd';
 class Login extends Component{
   state = {
@@ -19,7 +21,7 @@ class Login extends Component{
     event.preventDefault();
     const { email, password } = this.state;
     this.props.firebase.signInUserWithEmailAndPassword(email, password)
-      .then(user => this.props.history.push("/app/home"))
+      .then(user => this.props.history.push(routes.home))
       .catch(error => this.setState({ error: 'Check your E-mail or Password' }))
   }
 
@@ -50,14 +52,14 @@ class Login extends Component{
         <Form.Item>
           <>
             <Checkbox>Remember me</Checkbox>
-            <Link className="login-form-forgot" to="/pass-forget">
+            <Link className="login-form-forgot" to={routes.forgetPass}>
               Forgot password
           </Link>
           </>
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
-          Or <Link to="/signup">register now!</Link>
+          Or <Link to={routes.signup}>register now!</Link>
         </Form.Item>
       </Form>
     </>

@@ -6,6 +6,8 @@ import { Form, Input, Icon, Checkbox, Button} from 'antd';
 import { withFirebase } from '../Firebase';
 
 import './style.css';
+
+import * as routes from '../../Routes';
 class SignUp extends Component{
   state = {
     username: '',
@@ -101,7 +103,7 @@ class SignUp extends Component{
               >
                 Sign up
               </Button>
-              Or Already have an account! <Link to="/login"> Login </Link>
+              Or Already have an account! <Link to={routes.login}> Login </Link>
             </>
           </Form.Item>
         </Form>
@@ -110,6 +112,5 @@ class SignUp extends Component{
   }
 }
 
-const SignUpPage = withFirebase(SignUp);
+export default withFirebase(SignUp);
 
-export default SignUpPage;
