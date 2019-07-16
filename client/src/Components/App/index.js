@@ -5,6 +5,8 @@ import Navigation from '../Navigation';
 
 import * as routes from '../../Routes';
 
+import { withFirebase } from '../Firebase'
+
 import {
   LandingPage,
   Login,
@@ -17,13 +19,28 @@ import {
 
 import 'antd/dist/antd.css';
 
-export default class App extends Component{
-  state = { };
+class App extends Component{
+  state = { 
+    authUser: null,
+  };
 
+  componentDidMount(){
+    // console.log(111, this.props.firebase.auth.onAuthStateChanged);
+    this.props.firebase.auth.onAuthStateChanged(
+      authUser => {
+        authUser ? this.setState({ authUser }) : this.setState({ authUser : null})
+      }
+    )
+  }
+  
   render(){
+    const { authUser } = this.state;
     return (
       <Router>
-        <Navigation />
+        {
+          authUser && <Navigation authUser={authUser}/>
+        }
+        {/* <>{console.log(222, authUser)}</> */}
         <Route exact path={routes.landing} component={LandingPage}></Route>
         <Route exact path={routes.login} component={Login}></Route>
         <Route exact path={routes.signup} component={SignUp}></Route>
@@ -35,3 +52,5 @@ export default class App extends Component{
     )
   }
 }
+
+export default withFirebase(App);
