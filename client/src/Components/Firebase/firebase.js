@@ -38,6 +38,9 @@ class Firebase{
   // function for logout
   signOut = () => this.auth.signOut();
 
+  // function to reset password
+  resetPassword = (email) => this.auth.sendPasswordResetEmail(email);
+
 }
 
 export default Firebase;
