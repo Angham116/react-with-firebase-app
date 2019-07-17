@@ -3,8 +3,8 @@ import Login from './Login';
 import SignUp from './SignUp';
 import Home from './Home';
 import Account from './Account';
+import ChangePassword from './ChangePassword';
 import ForgetPassword from './ForgetPassword';
-import ResetPassword from './ResetPassword';
 
 export {
   LandingPage,
@@ -12,6 +12,6 @@ export {
   SignUp,
   Home,
   Account,
+  ChangePassword,
   ForgetPassword,
-  ResetPassword,
 }

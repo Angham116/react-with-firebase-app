@@ -14,7 +14,7 @@ import {
   Home,
   Account,
   ForgetPassword,
-  ResetPassword,
+  ChangePassword,
 } from '../index';
 
 import 'antd/dist/antd.css';
@@ -47,7 +47,7 @@ class App extends Component{
         <Route exact path={routes.home} component={Home}></Route>
         <Route exact path={routes.account} component={Account}></Route>
         <Route exact path={routes.forgetPass} component={ForgetPassword}></Route>
-        <Route exact path={routes.resetPass} component={ResetPassword}></Route>
+        <Route exact path={routes.resetPass} component={ChangePassword}></Route>
       </Router>
     )
   }

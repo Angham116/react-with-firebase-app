@@ -18,7 +18,6 @@ class ForgetPassword extends Component{
     handleSubmit = (e) => {
       e.preventDefault();
       const { email } = this.state;
-      // console.log(this.props);
       this.props.firebase.resetPassword(email)
         .then(() => this.props.history.push(routes.login))
         .catch(err => console.log('error from reset password', err));
